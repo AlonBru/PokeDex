@@ -9,6 +9,13 @@ const img= document.getElementById('img');
 const typeList= document.getElementById('typeList');
 
 async function findPokemon(){
+    if (document.getElementById('typePokemonList')){
+        view.removeChild(document.getElementById('typePokemonList'));
+        Array.from(typeList.getElementsByTagName('li')).forEach(element=>typeList.removeChild(element));
+        
+
+        }
+        
     const query=input.value;
     try {
         
@@ -38,13 +45,17 @@ const listTypes=(types)=>{
         typeList.appendChild(type);
         }
 }
-const ListClick= (e)=>{
+const viewClick= (e)=>{
     const target= e.target;
-    if (target.className!=='typeName') return;
+    if (target.className==='typeName'){
     const value=target.innerText;
-    typeMenu(value)    
+    getType(value);    
+    }else if (target.className==='pokemonName'){
+        input.value = target.innerText;
+        findPokemon()
+    } else return;
 }
-const typeMenu =async (type) =>{
+const getType =async (type) =>{
     const options= {
       method: 'GET',
       mode: 'cors',
@@ -56,8 +67,25 @@ const typeMenu =async (type) =>{
       redirect: 'follow',
     }
     const res =await fetch( `https://pokeapi.co/api/v2/type/${type}`,options)
-    .then(data => {console.log(data);});
+    .then(response => response.json())
+    .then(data =>typeMenu(data) );
   }
+const typeMenu= (type)=>{
+    const pokemon=type.pokemon;
+    const list= document.createElement('ul');
+    list.id='typePokemonList';
+    list.innerText=`Other Pokemon of the type "${type.name.toUpperCase()}"`;
+    for (let x of pokemon){
+        const name= x.pokemon.name
+        const item= document.createElement('li');
+        item.className='pokemonName';
+        item.innerText=name;
+        list.appendChild(item);
+    }
+    view.appendChild(list);
+    
+    
+}
   
 submit.onclick=findPokemon;
-typeList.addEventListener('click',ListClick)
+view.addEventListener('click',viewClick)
