@@ -11,15 +11,15 @@
     <div id="container">
         <div id='control' >
             <!-- <H1>PokeDex</H1> -->
-            <input id="input" type="text" placeholder="Enter Pokemon Name/ID">
+            <input id="input" type="text" autocomplete="off" placeholder="Enter Pokemon Name/ID">
             <button id='searchButton'>search</button>
-            <p id="error" ></p>
+            <p id="error" style='visibility: hidden;' ></p>
         </div>
         <div id="view" style='visibility: hidden;'>
+            <img id="img" src="" alt="NO-IMAGE" title="I DON'T CARE! I WANT PICTURES OF SPIDERMAN">
             <p id="info"></p>
-            <img id="img" src="" alt="" title="I DON'T CARE! I WANT PICTURES OF SPIDERMAN">
             <ul id="typeList">
-                 <lh>Types:</lh>
+                <label for="typeList">Types:</label>
             </ul>
         </div>
     </div>

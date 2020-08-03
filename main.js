@@ -10,7 +10,6 @@ const typeList= document.getElementById('typeList');
 
 async function findPokemon(){
     if (document.getElementById('typePokemonList')){
-        debugger
         view.removeChild(document.getElementById('typePokemonList'));
         view.removeChild(document.getElementById('selectSearch'));
      }
@@ -19,19 +18,20 @@ async function findPokemon(){
     try {
         
         let data = await axios.get(`https://pokeapi.co/api/v2/pokemon/${query}`);
-        ep.hidden=true;
+        ep.style.visibility='hidden';
         data = data.data;
         view.style.visibility= 'visible';
+        console.log(typeof(data.height))
         p.innerText=`Name:${data.name}
-        Height:${data.height} decameters
-        Weight:${data.weight} hectograms`
+        Height:${(data.height*.1).toFixed(1)}m
+        Weight:${(data.weight*.1).toFixed(1)}kg`
         listTypes(data.types);
-        img.src= data.sprites.front_default;
+        img.src= data.sprites.front_default||'NO-IMAGE';
         img.addEventListener('mouseover',()=>img.src=data.sprites.back_default||data.sprites.front_default);
         img.addEventListener('mouseout',()=>img.src=data.sprites.front_default);
     } catch (error) {
         console.error(error);
-        ep.hidden=false;
+        ep.style.visibility='visible';
         ep.innerText= `Error! ${error}. please try again`;
      return;  
     }
