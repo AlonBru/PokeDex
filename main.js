@@ -10,11 +10,10 @@ const typeList= document.getElementById('typeList');
 
 async function findPokemon(){
     if (document.getElementById('typePokemonList')){
+        debugger
         view.removeChild(document.getElementById('typePokemonList'));
-        Array.from(typeList.getElementsByTagName('li')).forEach(element=>typeList.removeChild(element));
-        
-
-        }
+        view.removeChild(document.getElementById('selectSearch'));
+     }
         
     const query=input.value;
     try {
@@ -22,13 +21,13 @@ async function findPokemon(){
         let data = await axios.get(`https://pokeapi.co/api/v2/pokemon/${query}`);
         ep.hidden=true;
         data = data.data;
-        view.hidden=false
+        view.style.visibility= 'visible';
         p.innerText=`Name:${data.name}
         Height:${data.height} decameters
         Weight:${data.weight} hectograms`
         listTypes(data.types);
         img.src= data.sprites.front_default;
-        img.addEventListener('mouseover',()=>img.src=data.sprites.back_default);
+        img.addEventListener('mouseover',()=>img.src=data.sprites.back_default||data.sprites.front_default);
         img.addEventListener('mouseout',()=>img.src=data.sprites.front_default);
     } catch (error) {
         console.error(error);
@@ -38,6 +37,7 @@ async function findPokemon(){
     }
 }
 const listTypes=(types)=>{
+    Array.from(typeList.getElementsByTagName('li')).forEach(element=>typeList.removeChild(element));
     for(let x of types){
         let type= document.createElement('li')
          type.innerText = x.type.name;
@@ -46,12 +46,18 @@ const listTypes=(types)=>{
         }
 }
 const viewClick= (e)=>{
+    
     const target= e.target;
     if (target.className==='typeName'){
     const value=target.innerText;
     getType(value);    
-    }else if (target.className==='pokemonName'){
-        input.value = target.innerText;
+    if (document.getElementById('typePokemonList')){
+        view.removeChild(document.getElementById('typePokemonList'));
+        view.removeChild(document.getElementById('selectSearch'));
+    }
+    }else if (target.id==='selectSearch'){
+        const select =document.getElementById('typePokemonList')
+        input.value = select.value;
         findPokemon()
     } else return;
 }
@@ -68,7 +74,8 @@ const getType =async (type) =>{
     }
     const res =await fetch( `https://pokeapi.co/api/v2/type/${type}`,options)
     .then(response => response.json())
-    .then(data =>typeMenu(data) );
+    // .then(data =>typeMenu(data) );
+    .then(data =>typeSelect(data) );
   }
 const typeMenu= (type)=>{
     const pokemon=type.pokemon;
@@ -83,6 +90,33 @@ const typeMenu= (type)=>{
         list.appendChild(item);
     }
     view.appendChild(list);
+}
+const typeSelect= (type)=>{
+    const pokemon=type.pokemon;
+    const select= document.createElement('select');
+    select.id='typePokemonList';
+    
+    const def= document.createElement('option');
+    def.className='pokemonName';
+    def.defaultSelected=true;
+    def.disabled=true;
+    def.innerText = `other pokemons of type ${type.name.toUpperCase()} ` 
+    select.appendChild(def);
+
+    const selectSearch= document.createElement('button');
+    selectSearch.id= 'selectSearch';
+    selectSearch.innerText= 'Search';
+    
+    // list.innerText=`Other Pokemon of the type "${type.name.toUpperCase()}"`;
+    for (let x of pokemon){
+        const name= x.pokemon.name
+        const item= document.createElement('option');
+        item.className='pokemonName';
+        item.innerText=name;
+        select.appendChild(item);
+    }
+    view.appendChild(select);
+    view.appendChild(selectSearch);
     
     
 }
