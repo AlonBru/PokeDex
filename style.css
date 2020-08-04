@@ -1,0 +1,119 @@
+body{
+    display: flex;
+    flex-direction: column;
+    background-color: #e84848;
+}
+#container {
+    height: 94vh;
+    width: 96vw;
+    border: 3px solid blue;
+    background-image: url(https://cdn.dribbble.com/users/1363206/screenshots/5497614/pokedex_dribbble-01.jpg);
+    background-color: #e84848;
+    background-size: 168vw 168vh;
+    background-position-x: -35vw;
+    background-position-y: -16vw;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-content: center;
+}
+#control{
+    border: 3px solid skyblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: fixed;
+    right: 2vw;
+    top: 19vh;
+    width: 42vw;
+    height: 76vh;
+}
+#input{
+    width: 27vw;
+    position: fixed;
+    right: 8vw;
+    top: 38.7vh;
+    height: 8vh;
+    align-self: center;
+    background-color: darkslategray !important;
+    color: lightgreen !important;
+}
+#searchButton{
+    position: fixed;
+    align-self: center;
+    color: white;
+    right: 21.4vw;
+    bottom: 6.6vh;
+    width: 16vw;
+    height: 9vh;
+    background-color: green;
+    border: 3px outset darkgreen;
+    border-radius: 10%/ 50%;
+    box-shadow: 2px 2px 2px inset lightgreen;
+
+}
+#error {
+    align-self: center;
+    font-size: small;
+    position: relative;
+    left: 1.3vw;
+    color: yellow;
+    margin: 0;
+    width: 28.4vw;
+    height: 11vh;
+    top: 1.5vh;
+    background-color: rgba(250,20,0,0.7);
+    text-align: justify;
+}
+#view{
+    height: 21vh;
+    bottom: 34.7vh;
+    width: 32.2vw;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-items: flex-start;
+    position: fixed;
+    left: 9vw;
+    align-self: center;
+    justify-self: center;
+    background-color: rgba(59,60,60,0.9);
+    color: limegreen;
+    justify-content: center;
+    font-size: small;
+}
+#img{
+    height: 22vh;
+    display: inline-block;
+    position: relative;
+}
+#info{
+    align-self: center;
+    display: inline-block;
+    position: relative;
+    margin: 0;
+
+}
+#typeList{
+    position: relative;
+    align-self: center;
+    padding-inline-start: 10px;
+    display: inline-block;
+    margin: 0;   
+}
+#selectSearch{
+    color: gold;
+    position: absolute;
+    bottom: -27.6vh;
+    right: 14.4vw;
+    width: 10vw;
+}
+#typePokemonList{
+    color: aliceblue;
+    position: absolute;
+    bottom: -13.7vh;
+    border-radius: 13%/129%;
+    background: darkred;
+    border: 0;
+}
