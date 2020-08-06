@@ -7,7 +7,7 @@ body{
     position: fixed;
     height: 94vh;
     width: 96vw;
-    border: 3px solid blue;
+    /* border: 3px solid blue; */
     background-image: url(https://cdn.dribbble.com/users/1363206/screenshots/5497614/pokedex_dribbble-01.jpg);
     background-color: #e84848;
     background-size: 168vw 168vh;
@@ -20,7 +20,7 @@ body{
     align-content: center;
 }
 #control{
-    border: 3px solid skyblue;
+    /* border: 3px solid skyblue; */
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -33,8 +33,8 @@ body{
 #input{
     width: 27vw;
     position: fixed;
-    right: 8vw;
-    top: 38.7vh;
+    right: 9.8vw;
+    top: 38.5vh;
     height: 8vh;
     align-self: center;
     background-color: darkslategray !important;
@@ -44,28 +44,34 @@ body{
     position: fixed;
     align-self: center;
     color: white;
-    right: 21.4vw;
-    bottom: 6.6vh;
+    right: 23vw;
+    bottom: 7.6vh;
     width: 16vw;
     height: 9vh;
     background-color: green;
     border: 3px outset darkgreen;
     border-radius: 10%/ 50%;
     box-shadow: 2px 2px 2px inset lightgreen;
-
 }
 #error {
     align-self: center;
     font-size: small;
     position: relative;
-    left: 1.3vw;
+    left: -1.2vw;
     color: yellow;
     margin: 0;
     width: 28.4vw;
     height: 11vh;
-    top: 1.5vh;
+    top: -9.5vh;
     background-color: rgba(250,20,0,0.7);
     text-align: justify;
+}
+#viewLabel{
+    position: fixed;
+    top: 39vh;
+    background-color: rgba(238,238,236,0.9);
+    left: 15vw;
+    color: black;
 }
 #view{
     height: 21vh;
@@ -76,18 +82,23 @@ body{
     flex-direction: row;
     justify-items: flex-start;
     position: fixed;
-    left: 9vw;
+    left: 8.5vw;
     align-self: center;
     justify-self: center;
-    background-color: rgba(59,60,60,0.9);
+    background-color: rgba(59,60,60,0.98);
     color: limegreen;
     justify-content: center;
     font-size: small;
+    border-radius: 5%/15%;
 }
-#img{
-    height: 22vh;
+#img {
+    /* max-height: 22vh; */
+    /* max-width: 22vh; */
     display: inline-block;
     position: relative;
+    width: 58%;
+    height: auto;
+    align-self: center;
 }
 #info{
     align-self: center;
@@ -118,4 +129,52 @@ body{
     background: darkred;
     border: 0;
 }
-/* ts */
+
+@media screen and (min-width: 693px) {
+    #container {
+        font-size: smaller !important;
+    }
+    #view,#error{
+        font-size: smaller !important;
+    }
+    #img{
+        width: 55%;
+    }
+}
+
+@media screen and (max-width: 689px) {
+    #container {
+        font-size: smaller !important;
+    }
+    #view,#error{
+        font-size: smaller !important;
+    }
+    #img{
+        width: 55%;
+    }
+}
+
+
+@media screen and (max-width: 677px) {
+    #container {
+        font-size: x-small !important;
+    }
+    #view,#error{
+        font-size: x-small !important;
+    }
+    #img{
+        width: 45%;
+    }
+    
+}
+@media screen and (max-width: 631px) {
+    #container {
+        font-size: xx-small !important;
+    }
+    #view,#error{
+        font-size: xx-small !important;
+    }
+    /* #img{
+        width: 35%;
+    } */
+}

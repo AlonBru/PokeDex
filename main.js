@@ -3,6 +3,7 @@
 const input= document.getElementById('input');
 const submit= document.getElementById('searchButton');
 const view= document.getElementById('view');
+const viewLabel= document.getElementById('viewLabel');
 const p= document.getElementById('info');
 const ep= document.getElementById('error');
 const img= document.getElementById('img');
@@ -16,10 +17,10 @@ async function findPokemon(){
         
     const query=input.value;
     try {
-        
         let data = await axios.get(`https://pokeapi.co/api/v2/pokemon/${query}`);
         ep.style.visibility='hidden';
         view.style.visibility='visible';
+        viewLabel.style.color='#0f0'
         data = data.data;
         console.log(typeof(data.height))
         p.innerText=`Name:${data.name}
@@ -31,6 +32,7 @@ async function findPokemon(){
         img.addEventListener('mouseout',()=>img.src=data.sprites.front_default);
     } catch (error) {
         console.error(error);
+        ep.style.visibility='visible';
         ep.innerText= `Error! ${error}. please try again`;
      return;  
     }
