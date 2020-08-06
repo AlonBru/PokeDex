@@ -4,6 +4,7 @@ body{
     background-color: #e84848;
 }
 #container {
+    position: fixed;
     height: 94vh;
     width: 96vw;
     border: 3px solid blue;
@@ -11,7 +12,7 @@ body{
     background-color: #e84848;
     background-size: 168vw 168vh;
     background-position-x: -35vw;
-    background-position-y: -16vw;
+    background-position-y: -34vh;
     background-repeat: no-repeat;
     display: flex;
     flex-direction: row-reverse;

@@ -19,8 +19,8 @@ async function findPokemon(){
         
         let data = await axios.get(`https://pokeapi.co/api/v2/pokemon/${query}`);
         ep.style.visibility='hidden';
+        view.style.visibility='visible';
         data = data.data;
-        view.style.visibility= 'visible';
         console.log(typeof(data.height))
         p.innerText=`Name:${data.name}
         Height:${(data.height*.1).toFixed(1)}m
@@ -31,7 +31,6 @@ async function findPokemon(){
         img.addEventListener('mouseout',()=>img.src=data.sprites.front_default);
     } catch (error) {
         console.error(error);
-        ep.style.visibility='visible';
         ep.innerText= `Error! ${error}. please try again`;
      return;  
     }
@@ -122,4 +121,5 @@ const typeSelect= (type)=>{
 }
   
 submit.onclick=findPokemon;
+// submit.addEventListener('click',findPokemon)
 view.addEventListener('click',viewClick)
