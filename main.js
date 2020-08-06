@@ -20,7 +20,7 @@ async function findPokemon(){
         let data = await axios.get(`https://pokeapi.co/api/v2/pokemon/${query}`);
         ep.style.visibility='hidden';
         view.style.visibility='visible';
-        viewLabel.style.color='#0f0'
+        viewLabel.style.color='rgb(0, 175, 0)'
         data = data.data;
         console.log(typeof(data.height))
         p.innerText=`Name:${data.name}
@@ -125,3 +125,14 @@ const typeSelect= (type)=>{
 submit.onclick=findPokemon;
 // submit.addEventListener('click',findPokemon)
 view.addEventListener('click',viewClick)
+input.oninput=()=>{
+    if(input.value==''){
+    submit.style.backgroundColor= '';
+    submit.style.border= ''
+    submit.style.boxShadow = '';
+    }else{
+    submit.style.backgroundColor = 'green';
+    submit.style.border = '3px outset darkgreen';
+    submit.style.boxShadow = '2px 2px 2px inset lightgreen';
+    }
+}

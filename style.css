@@ -25,33 +25,43 @@ body{
     flex-direction: column;
     justify-content: space-evenly;
     position: fixed;
-    right: 2vw;
-    top: 19vh;
-    width: 42vw;
-    height: 76vh;
+    right: 2.9vw;
+    top: 18vh;
+    width: 44.7vw;
+    height: 77vh;
 }
 #input{
-    width: 27vw;
+    width: 27.4vw;
     position: fixed;
-    right: 9.8vw;
-    top: 38.5vh;
+    right: 10.1vw;
+    top: 37.3vh;
     height: 8vh;
     align-self: center;
-    background-color: darkslategray !important;
+    background-color: darkslategray!important;
     color: lightgreen !important;
+}
+#input:focus{
+    background-color: gray !important;
+    outline: greenyellow;
+
 }
 #searchButton{
     position: fixed;
     align-self: center;
-    color: white;
-    right: 23vw;
-    bottom: 7.6vh;
-    width: 16vw;
+    right: 22.8vw;
+    bottom: 8.3vh;
+    width: 17vw;
     height: 9vh;
-    background-color: green;
-    border: 3px outset darkgreen;
     border-radius: 10%/ 50%;
-    box-shadow: 2px 2px 2px inset lightgreen;
+    color: white;
+    font-weight: 900;
+    background-color: darkred;
+    border: 3px outset darkred;
+    box-shadow: 3px 3px 5px inset lightcoral;
+    /* background-color: green;
+    border: 3px outset darkgreen;
+    box-shadow: 2px 2px 2px inset lightgreen; */
+    
 }
 #error {
     align-self: center;
@@ -68,14 +78,14 @@ body{
 }
 #viewLabel{
     position: fixed;
-    top: 39vh;
+    top: 38vh;
     background-color: rgba(238,238,236,0.9);
     left: 15vw;
     color: black;
 }
 #view{
     height: 21vh;
-    bottom: 34.7vh;
+    bottom: 36.6vh;
     width: 32.2vw;
     border: none;
     display: flex;
@@ -115,16 +125,21 @@ body{
     margin: 0;   
 }
 #selectSearch{
-    color: gold;
+    color: rgb(210,30,75);
+    font-weight: 900;
     position: absolute;
-    bottom: -27.6vh;
-    right: 14.4vw;
-    width: 10vw;
+    bottom: -28.3vh;
+    right: 13.3vw;
+    width: 12.4vw;
+    height: 8.6vh;
+    background-color: gold;
+    border-radius: 22%/43%;
+    border: 3px gold outset;
 }
 #typePokemonList{
     color: aliceblue;
     position: absolute;
-    bottom: -13.7vh;
+    bottom: -12.7vh;
     border-radius: 13%/129%;
     background: darkred;
     border: 0;
