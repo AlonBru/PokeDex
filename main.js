@@ -1,6 +1,8 @@
 // const { default: Axios } = require("axios");
 
 const input= document.getElementById('input');
+input.addEventListener('focus',inputEnter)
+input.addEventListener('focusout',inputEnter)
 const submit= document.getElementById('searchButton');
 const view= document.getElementById('view');
 const viewLabel= document.getElementById('viewLabel');
@@ -8,8 +10,39 @@ const p= document.getElementById('info');
 const ep= document.getElementById('error');
 const img= document.getElementById('img');
 const typeList= document.getElementById('typeList');
+const ball= document.getElementById('ball')
 
+function inputEnter(e){
+    // adds submitting with enter
+    //target is an input objects
+    //event type is focus||focusout  
+    const target = e.target;
+    function submit(e){
+        //calls updateData when enter is pressed
+        //target is an input objects
+        //event type is focus||focusout  
+        if (e.key=='Enter'){
+            findPokemon()
+            
+        }
+    }
+    if(e.type =='focus') target.addEventListener('keyup',submit);
+    if(e.type=='focusout') target.removeEventListener('keyup',submit);
+    }
+
+
+async function rndBall(){
+    try{
+    let number = Math.floor(Math.random()*16);
+    const res = await axios.get(`https://pokeapi.co/api/v2/item/${number}`);
+    ball.src = res.data.sprites.default;
+    ball.title = res.data.name;
+    }catch(err){
+        console.error(err)
+    }
+}
 async function findPokemon(){
+    if (submit.style.backgroundColor != 'green'    )return;
     if (document.getElementById('typePokemonList')){
         view.removeChild(document.getElementById('typePokemonList'));
         view.removeChild(document.getElementById('selectSearch'));
@@ -33,7 +66,7 @@ async function findPokemon(){
     } catch (error) {
         console.error(error);
         ep.style.visibility='visible';
-        ep.innerText= `Error! ${error}. please try again`;
+        ep.innerText= `Your search turned up nothing. please try again`;
      return;  
     }
 }
@@ -58,6 +91,7 @@ const viewClick= (e)=>{
     }
     }else if (target.id==='selectSearch'){
         const select =document.getElementById('typePokemonList')
+        if (select.selectedOptions[0].id == "defaultOption" )return;
         input.value = select.value;
         findPokemon()
     } else return;
@@ -98,7 +132,7 @@ const typeSelect= (type)=>{
     select.id='typePokemonList';
     
     const def= document.createElement('option');
-    def.className='pokemonName';
+    def.id='defaultOption';
     def.defaultSelected=true;
     def.disabled=true;
     def.innerText = `other pokemons of type ${type.name.toUpperCase()} ` 
@@ -120,19 +154,22 @@ const typeSelect= (type)=>{
     view.appendChild(selectSearch);
     
     
+    
 }
   
+rndBall();
 submit.onclick=findPokemon;
 // submit.addEventListener('click',findPokemon)
 view.addEventListener('click',viewClick)
+document.getElementById('baller').onclick=()=>rndBall();
 input.oninput=()=>{
-    if(input.value==''){
-    submit.style.backgroundColor= '';
-    submit.style.border= ''
-    submit.style.boxShadow = '';
-    }else{
-    submit.style.backgroundColor = 'green';
-    submit.style.border = '3px outset darkgreen';
-    submit.style.boxShadow = '2px 2px 2px inset lightgreen';
-    }
+        if(input.value==''){
+        submit.style.backgroundColor= '';
+        submit.style.border= ''
+        submit.style.boxShadow = '';
+        }else{
+        submit.style.backgroundColor = 'green';
+        submit.style.border = '3px outset darkgreen';
+        submit.style.boxShadow = '2px 2px 2px inset lightgreen';
+        }
 }

@@ -19,6 +19,15 @@ body{
     justify-content: center;
     align-content: center;
 }
+#baller{
+    position: fixed;
+    bottom: 8.7vh;
+    right: 10.4vh;
+
+}
+#ball{
+    height: 9vh;
+}
 #control{
     /* border: 3px solid skyblue; */
     display: flex;
