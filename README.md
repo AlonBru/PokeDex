@@ -1,6 +1,6 @@
 # Pokedex :sparkles:*
 ### by AlonBru
-Available on [Vercel!](https://poke-dex.alonbru.vercel.app/)
+Available on [Vercel!](https://pokedex-ab.vercel.app/)
 
 ## Legend
 * [Features](#Features)
