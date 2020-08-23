@@ -1,8 +1,8 @@
 // const { default: Axios } = require("axios");
 // todo: fix indentation to whole file
 const input= document.getElementById('input');
-input.addEventListener('focus',inputEnter) // maybe 'inputEnter' is not a good name if you use it for focus events
-input.addEventListener('focusout',inputEnter)
+input.addEventListener('focus',inputShortcut);
+input.addEventListener('focusout',inputShortcut)
 const submit= document.getElementById('searchButton');
 const view= document.getElementById('view');
 const viewLabel= document.getElementById('viewLabel');
@@ -12,7 +12,7 @@ const img= document.getElementById('img');
 const typeList= document.getElementById('typeList');
 const ball= document.getElementById('ball')
 
-function inputEnter(e){
+function inputShortcut(e){
     // adds submitting with enter
     //target is an input objects
     //event type is focus||focusout  
@@ -21,10 +21,7 @@ function inputEnter(e){
         //calls updateData when enter is pressed
         //target is an input objects
         //event type is focus||focusout  
-        if (e.key=='Enter'){
-            findPokemon()
-            
-        }
+        if (e.key=='Enter'){ findPokemon()}
     }
     if(e.type =='focus') target.addEventListener('keyup',submit); // bad if style. use brackets
     if(e.type=='focusout') target.removeEventListener('keyup',submit);
@@ -33,8 +30,8 @@ function inputEnter(e){
 
 async function rndBall(){
     try{
-    let number = Math.floor(Math.random()*16); // bad variable name. a better name is itemId, since this is what you want it to represent
-    const res = await axios.get(`https://pokeapi.co/api/v2/item/${number}`);
+    let itemId = Math.floor(Math.random()*16); // bad variable name. a better name is itemId, since this is what you want it to represent
+    const res = await axios.get(`https://pokeapi.co/api/v2/item/${itemId}`);
     ball.src = res.data.sprites.default; // since you use 'ball' only in this function, why not define it here and not globally?
     ball.title = res.data.name;
     }catch(err){
@@ -102,8 +99,8 @@ const getType =async (type) =>{ // regular function is better in this scenario
     const options= {
       method: 'GET',
       mode: 'cors',
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
+      cache: 'no-cache',
+      credentials: 'same-origin', 
       headers: {
         'Content-Type': 'application/json'
       },
@@ -161,17 +158,16 @@ const typeSelect= (type)=>{ // regular function is better in this scenario
   
 rndBall(); // bad function name
 submit.onclick=findPokemon; // better to use the form you used 4 line under
-// submit.addEventListener('click',findPokemon) Remove unnecessary code
 view.addEventListener('click',viewClick)
 document.getElementById('baller').onclick=()=>rndBall();
 input.oninput=()=>{ // todo: fix indetation
         if(input.value==''){
-        submit.style.backgroundColor= '';
-        submit.style.border= ''
-        submit.style.boxShadow = '';
+            submit.style.backgroundColor= '';
+            submit.style.border= ''
+            submit.style.boxShadow = '';
         }else{
-        submit.style.backgroundColor = 'green';
-        submit.style.border = '3px outset darkgreen';
-        submit.style.boxShadow = '2px 2px 2px inset lightgreen';
+            submit.style.backgroundColor = 'green';
+            submit.style.border = '3px outset darkgreen';
+            submit.style.boxShadow = '2px 2px 2px inset lightgreen';
         }
 }
